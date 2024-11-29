@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Establecer el fondo blanco para toda la aplicación */
+body {
+    @apply bg-white;
+}
+
+
+@layer components {
+    
+    .sidebar {
+        @apply w-64 bg-gray-800 text-white p-5;
+    }
+    .navbar {
+        @apply bg-gray-800 text-white;
+    }
+    .navbar-link {
+        @apply text-gray-300 hover:text-white;
+    }
+}
+/* Establecer el fondo blanco para toda la aplicación */
+body {
+    @apply bg-white;
+}

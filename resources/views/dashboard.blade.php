@@ -1,17 +1,14 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+@section('content')
+<div class="container">
+    <h1>Bienvenido, {{ Auth::user()->name }}</h1>
+    <p>Tu rol es: {{ Auth::user()->role->nombre }}</p>
+
+    @if(Auth::user()->role->nombre === 'admin')
+        <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">Ir al Panel de Admin</a>
+    @elseif(Auth::user()->role->nombre === 'empleado')
+        <a href="{{ route('empleado.dashboard') }}" class="btn btn-success">Ir al Panel de Empleado</a>
+    @endif
+</div>
+@endsection
