@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-gray-800 border-b border-gray-700">
+<nav class="bg-gray-800 border-b border-gray-700">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
@@ -14,12 +14,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         Dashboard
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('products.index')">
-                        Productos
-                    </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('categories.index')">
-                        Categorías
-                    </x-nav-link>
+             
                 </div>
             </div>
 
@@ -38,13 +33,16 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <!-- Profile -->
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            Perfil
                         </x-dropdown-link>
+
+                        <!-- Logout -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                Cerrar Sesión
                             </x-dropdown-link>
                         </form>
                     </x-slot>

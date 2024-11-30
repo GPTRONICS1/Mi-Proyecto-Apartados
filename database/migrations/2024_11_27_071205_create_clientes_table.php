@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 100);
-            $table->string('telefono', 15);
+            $table->string('nombre');
+            $table->string('correo')->unique(); // Asegúrate de que la columna 'correo' está aquí
+            $table->string('telefono');
             $table->timestamps();
         });
     }

@@ -2,13 +2,22 @@
 
 @section('content')
 <div class="container">
-    <h1>Bienvenido, {{ Auth::user()->name }}</h1>
-    <p>Tu rol es: {{ Auth::user()->role->nombre }}</p>
+    <h1 class="mb-4">Bienvenido, {{ Auth::user()->name }}</h1>
+    <p class="mb-3">Tu rol es: {{ Auth::user()->role->nombre }}</p>
 
-    @if(Auth::user()->role->nombre === 'admin')
-        <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">Ir al Panel de Admin</a>
-    @elseif(Auth::user()->role->nombre === 'empleado')
-        <a href="{{ route('empleado.dashboard') }}" class="btn btn-success">Ir al Panel de Empleado</a>
-    @endif
+    <script>
+        // Redirigir al usuario dependiendo de su rol
+        window.onload = function() {
+            let userRole = '{{ Auth::user()->role->nombre }}';
+
+            if (userRole === 'admin') {
+                window.location.href = '{{ route('admin.dashboard') }}';
+            } else if (userRole === 'empleado') {
+                window.location.href = '{{ route('empleado.dashboard') }}';
+            } else {
+                alert('No tienes un rol asignado.');
+            }
+        };
+    </script>
 </div>
 @endsection

@@ -9,10 +9,12 @@ class EmpleadoMiddleware
 {
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role->nombre === 'empleado') {
+        // Verifica si el usuario tiene el rol de empleado
+        if (Auth::check() && Auth::user()->role_id === 2) { // Cambia "2" por el ID correspondiente al rol de empleado
             return $next($request);
         }
 
-        return redirect('/dashboard')->with('error', 'No tienes acceso a esta sección');
+        // Redirige al dashboard si no tiene permisos
+        return redirect('/dashboard')->with('error', 'No tienes acceso a esta sección.');
     }
 }
